@@ -41,6 +41,7 @@
 
 
 
+
 ## buyer_addresses テーブル
 
 | Column           | Type       | Options                        |
@@ -72,3 +73,7 @@
 
 - has_one    :buyer_addresses
 - belongs_to :items
+=======
+* ...
+
+
