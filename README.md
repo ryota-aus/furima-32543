@@ -1,15 +1,15 @@
 ## users テーブル
 
-| Column           | Type       | Options                   |
-| ---------        | ------     | ----------------------    |
-| nickname         | string     | null: false               |
-| email            | string     | null: false, unique: true |
-| password         | string     | null: false               |
-| first_name       | string     | null: false               |
-| last_name        | string     | null: false               |
-| first_name_kana  | string     | null: false               |
-| last_name_kana   | string     | null: false               |
-| birth_day        | date       | null: false               |
+| Column             | Type       | Options                   |
+| ---------          | ------     | ----------------------    |
+| nickname           | string     | null: false               |
+| email              | string     | null: false, unique: true |
+| encrypted_password | string     | null: false               |
+| first_name         | string     | null: false               |
+| last_name          | string     | null: false               |
+| first_name_kana    | string     | null: false               |
+| last_name_kana     | string     | null: false               |
+| birth_day          | date       | null: false               |
 
 
 
@@ -17,27 +17,26 @@
 
 - has_many :items
 - has_many :purchase_records
-- belongs_to :buyer_addresses
+- 
 
 ## items テーブル
 
-| Column           | Type       | Options                        |
-| ---------        | ------     | ----------------------         |
-| image            |            |                                |
-| name             | string     | null: false                    |
-| description      | text       | null: false                    |
-| category         | string     | null: false                    |
-| condition        | string     | null: false                    |
-| shipping_charges | string     | null: false                    |
-| delivery_area    | string     | null: false                    |
-| delivery_days    | string     | null: false                    |
-| user             | references | null: false, foreign_key: true |
+| Column              | Type       | Options                        |
+| ---------           | ------     | ----------------------         |
+| name                | string     | null: false                    |
+| description         | string     | null: false                    |
+| category_id         | string     | null: false                    |
+| condition_id        | string     | null: false                    |
+| shipping_charges_id | string     | null: false                    |
+| delivery_area_id    | string     | null: false                    |
+| delivery_days_id    | string     | null: false                    |
+| user                | references | null: false, foreign_key: true |
 
 ### Association
 
 
-- belongs_to :users
-- has_one :purchase_records
+- belongs_to :user
+- has_one :purchase_record
 
 
 
@@ -45,19 +44,19 @@
 
 | Column           | Type       | Options                        |
 | ---------        | ------     | ----------------------         |
-| address          | string     |                                |
-| prefectures      | integer    | null: false                    |
+| address          | string     | null: false                    |
+| prefecture_id    | integer    | null: false                    |
 | city             | string     | null: false                    |
 | house_number     | string     | null: false                    |
-| build            | string     | null: false                    |
+| build            | string     |                                |
 | phone_number     | string     | null: false                    |
 | purchase_record  | references | null: false, foreign_key: true |
 
 
 ### Association
 
-- belongs_to :purchase_records
-- belongs_to :users
+- belongs_to :purchase_record
+- 
 
 
 
@@ -70,5 +69,6 @@
 
 ### Association
 
-- has_one    :buyer_addresses
-- belongs_to :items
+- has_one    :buyer_address
+- belongs_to :item
+- belongs_to :user
