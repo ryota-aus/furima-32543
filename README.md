@@ -40,6 +40,7 @@
 
 
 
+
 ## buyer_addresses テーブル
 
 | Column           | Type       | Options                        |
@@ -69,6 +70,8 @@
 
 ### Association
 
+
 - has_one    :buyer_address
 - belongs_to :item
 - belongs_to :user
+
