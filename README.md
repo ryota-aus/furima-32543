@@ -25,11 +25,12 @@
 | ---------           | ------     | ----------------------         |
 | name                | string     | null: false                    |
 | description         | string     | null: false                    |
-| category_id         | string     | null: false                    |
-| condition_id        | string     | null: false                    |
-| shipping_charges_id | string     | null: false                    |
-| delivery_area_id    | string     | null: false                    |
-| delivery_days_id    | string     | null: false                    |
+| category_id         | integer    | null: false                    |
+| condition_id        | integer    | null: false                    |
+| shipping_charges_id | integer    | null: false                    |
+| prefecture_id       | integer    | null: false                    |
+| delivery_days_id    | integer    | null: false                    |
+| price               | integer    | null: false                    |
 | user                | references | null: false, foreign_key: true |
 
 ### Association
