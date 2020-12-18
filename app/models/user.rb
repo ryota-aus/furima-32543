@@ -5,10 +5,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   
   PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
-         validates :nickname, presence: true
-         validates :email, presence: true, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\z/i }
-        validates_format_of :password, with: PASSWORD_REGEX, message: 'include both letters and numbers'
-        with_options presence: true, format: { with: /\A[ぁ-んァ-ヶ一-龥々]+\z/, message: 'Full-width characters' } do
+       validates :nickname, presence: true
+       validates_format_of :password, with: PASSWORD_REGEX, message: 'include both letters and numbers'
+       with_options presence: true, format: { with: /\A[ぁ-んァ-ヶ一-龥々]+\z/, message: 'Full-width characters' } do
          validates :first_name
          validates :last_name
          end
