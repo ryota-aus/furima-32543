@@ -56,6 +56,29 @@ describe Item do
     @item.valid?
     expect(@item.errors.full_messages).to include("Delivery day is not a number")
   end
+  it "category_idが1（--）場合は登録できないこと" do
+    @item.category_id = "--"
+    @item.valid?
+    expect(@item.errors.full_messages).to include("Category is not a number")
+  end
+  #4
+  it "shipping_charge_idが1（--）場合は登録できないこと" do
+    @item.shipping_charge_id = "--"
+    @item.valid?
+    expect(@item.errors.full_messages).to include("Shipping charge is not a number")
+  end
+  #5
+  it "prefecture_idがが1（--）場合は登録できないこと" do
+    @item.prefecture_id = "--"
+    @item.valid?
+    expect(@item.errors.full_messages).to include("Prefecture is not a number")
+  end
+  #6
+  it "delivery_day_idが1（--）場合は登録できないこと" do
+    @item.delivery_day_id = "--"
+    @item.valid?
+    expect(@item.errors.full_messages).to include("Delivery day is not a number")
+  end
   #7
   it "priceがない場合は登録できないこと" do
     @item.price = ""
