@@ -38,6 +38,11 @@ describe Item do
     @item.valid?
     expect(@item.errors.full_messages).to include("Category is not a number")
   end
+  it "condition_idがない場合は登録できないこと" do
+    @item.condition_id = ""
+    @item.valid?
+    expect(@item.errors.full_messages).to include("Condition is not a number")
+  end
   #4
   it "shipping_charge_idがない場合は登録できないこと" do
     @item.shipping_charge_id = ""
@@ -57,27 +62,27 @@ describe Item do
     expect(@item.errors.full_messages).to include("Delivery day is not a number")
   end
   it "category_idが1（--）場合は登録できないこと" do
-    @item.category_id = "--"
+    @item.category_id = 1
     @item.valid?
-    expect(@item.errors.full_messages).to include("Category is not a number")
+    expect(@item.errors.full_messages).to include("Category must be other than 1")
   end
   #4
   it "shipping_charge_idが1（--）場合は登録できないこと" do
-    @item.shipping_charge_id = "--"
+    @item.shipping_charge_id = 1
     @item.valid?
-    expect(@item.errors.full_messages).to include("Shipping charge is not a number")
+    expect(@item.errors.full_messages).to include("Shipping charge must be other than 1")
   end
   #5
   it "prefecture_idがが1（--）場合は登録できないこと" do
-    @item.prefecture_id = "--"
+    @item.prefecture_id = 1
     @item.valid?
-    expect(@item.errors.full_messages).to include("Prefecture is not a number")
+    expect(@item.errors.full_messages).to include("Prefecture must be other than 1")
   end
   #6
   it "delivery_day_idが1（--）場合は登録できないこと" do
-    @item.delivery_day_id = "--"
+    @item.delivery_day_id = 1
     @item.valid?
-    expect(@item.errors.full_messages).to include("Delivery day is not a number")
+    expect(@item.errors.full_messages).to include("Delivery day must be other than 1")
   end
   #7
   it "priceがない場合は登録できないこと" do
@@ -114,6 +119,16 @@ describe Item do
    end
    it "販売価格は半角数字以外登録できないこと" do
     @item.price = "５００"
+    @item.valid?
+    expect(@item.errors.full_messages).to include("Price Item doesn't match price")
+   end
+   it "販売価格は半角英語だけでは登録できないこと" do
+    @item.price = "eee"
+    @item.valid?
+    expect(@item.errors.full_messages).to include("Price Item doesn't match price")
+   end
+   it "販売価格は半角英数字混合では登録できないこと" do
+    @item.price = "５００eee"
     @item.valid?
     expect(@item.errors.full_messages).to include("Price Item doesn't match price")
    end
