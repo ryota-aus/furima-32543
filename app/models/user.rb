@@ -3,6 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+   has_many :items
   
   PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
        validates :nickname, presence: true
@@ -13,7 +14,7 @@ class User < ApplicationRecord
          end
         with_options presence: true, format: { with: /\A[ァ-ヶ]+\z/, message: 'Full-width katakana characters' } do
          validates :first_name_kana
-         validates :last_name_kana, presence: true
+         validates :last_name_kana
         end
          validates :birth_day, presence: true
         
