@@ -48,6 +48,11 @@ RSpec.describe OrderPurchese, type: :model do
       @order_purchese.valid?
       expect(@order_purchese.errors.full_messages).to include("Phone number can't be blank")
     end
+    it 'phone_numberは11桁以内でないと保存できないこと' do
+      @order_purchese.phone_number = 123456789000
+      @order_purchese.valid?
+      expect(@order_purchese.errors.full_messages).to include("Phone number Input only number")
+      end
     it 'phone_numberが半角数字以外だと保存できないこと' do
       @order_purchese.phone_number = 'あa２０００００００'
       @order_purchese.valid?
@@ -57,6 +62,16 @@ RSpec.describe OrderPurchese, type: :model do
       @order_purchese.token = nil
       @order_purchese.valid?
       expect(@order_purchese.errors.full_messages).to include("Token can't be blank")
+    end
+    it "user_idが空では登録できないこと" do
+      @order_purchese.user_id = nil
+      @order_purchese.valid?
+      expect(@order_purchese.errors.full_messages).to include("User can't be blank")
+    end
+    it "item_idが空では登録できないこと" do
+      @order_purchese.item_id = nil
+      @order_purchese.valid?
+      expect(@order_purchese.errors.full_messages).to include("Item can't be blank")
     end
    
    end

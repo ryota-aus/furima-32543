@@ -1,6 +1,7 @@
 class PurchesesController < ApplicationController
   before_action :set_item, only:[:index, :create]
   before_action :sold_out_item, only: [:index, :show]
+  before_action :authenticate_user!, except: [:index, :show]
   def index
    
     @order_purchese = OrderPurchese.new   #「OrderPurchese」に編集

@@ -10,7 +10,7 @@ window.addEventListener('load', () => {
     const sum = Math.floor(price - tax);
 
 
-    // addTaxDom.innerHTML = Math.floor(price);
+   
     inputValue.textContent = tax;
     addProfitDom.textContent = sum;    
   });
