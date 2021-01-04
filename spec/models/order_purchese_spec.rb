@@ -54,7 +54,7 @@ RSpec.describe OrderPurchese, type: :model do
       expect(@order_purchese.errors.full_messages).to include("Phone number can't be blank")
     end
     it 'phone_numberは11桁以内でないと保存できないこと' do
-      @order_purchese.phone_number = 123456789000
+      @order_purchese.phone_number = "123456789000"
       @order_purchese.valid?
       expect(@order_purchese.errors.full_messages).to include("Phone number Input only number")
       end
