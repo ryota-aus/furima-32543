@@ -16,7 +16,7 @@
 ### Association
 
 - has_many :items
-- has_many :records
+- has_many :purcheses
 - 
 
 ## items テーブル
@@ -37,12 +37,12 @@
 
 
 - belongs_to :user
-- has_one :record
+- has_one :purchese
 
 
 
 
-## orders テーブル
+## orders テーブル 住所情報保存テーブル
 
 | Column           | Type       | Options                        |
 | ---------        | ------     | ----------------------         |
@@ -52,17 +52,17 @@
 | house_number     | string     | null: false                    |
 | build            | string     |                                |
 | phone_number     | string     | null: false                    |
-| record           | references | null: false, foreign_key: true |
+| purchese           | references | null: false, foreign_key: true |
 
 
 ### Association
 
-- belongs_to :record
+- belongs_to :purchese
 - 
 
 
 
-## record テーブル
+## purchese テーブル  購入情報を保存するテーブル
 
 | Column       | Type       | Options                        |
 | -------      | ---------- | ------------------------------ |
@@ -75,4 +75,6 @@
 - has_one    :order
 - belongs_to :item
 - belongs_to :user
+
+
 
