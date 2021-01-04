@@ -1,10 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe OrderPurchese, type: :model do
-  
-    before do
-      @order_purchese = FactoryBot.build(:order_purchese)
-    end
+  before do
+    seller = FactoryBot.create(:user)
+    buyer = FactoryBot.create(:user)
+    item = FactoryBot.build(:item, user_id: seller.id)
+    item.save
+    @order_purchese = FactoryBot.build(:order_purchese, user_id: buyer.id, item_id: item.id)
+    sleep(1)
+  end
+
   describe '商品購入機能' do
    context '内容に問題ない場合' do
 

@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :item do
     after(:build) do |item|
-      item.image.attach(io: File.open('public/apple-touch-icon.png'), filename: 'apple-touch-icon.png')
+      item.image.attach(io: File.open('public/apple-touch-icon.jpg'), filename: 'apple-touch-icon.jpg')
     end
     name               {"test"}
     description        {"aaa"}
